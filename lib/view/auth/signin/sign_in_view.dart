@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:todo_app/res/app_text_style/app_text_style.dart';
+import 'package:todo_app/res/color_manager/app_colors.dart';
 import 'package:todo_app/res/getx_localization/string_text.dart';
 import 'package:todo_app/utils/ui_const.dart';
 import 'package:todo_app/view/widgets/common_appbar.dart';
@@ -20,14 +22,33 @@ class SignInView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Enter your Phone Number",
+              S.phone,
               style: AppTextStyle.tittleBig4(),
             ),
             gapH(3),
-            CustomTextformfild(
-                controller: TextEditingController(),
-                inputType: TextInputType.text,
-                hintText: ""),
+            InternationalPhoneNumberInput(
+              textFieldController: TextEditingController(),
+              textStyle: const TextStyle(color: Colors.white),
+              validator: (number) {
+                if (number!.isEmpty) {
+                  return 'Enter Phone number';
+                }
+                return null;
+              },
+              selectorTextStyle: const TextStyle(color: Colors.white),
+              autoFocusSearch: true,
+              hintText: "Enter your phone number",
+              onInputChanged: (PhoneNumber number) {
+                // controller.countryCodeController.text = number.dialCode!;
+              },
+              cursorColor: AppColors.primaryColor,
+              scrollPadding: const EdgeInsets.all(8),
+              textAlign: TextAlign.left,
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                showFlags: true,
+              ),
+            ),
           ],
         ),
       ),
