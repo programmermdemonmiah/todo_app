@@ -1,4 +1,6 @@
 {
     "home": "Home",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "enterYourPhoneNumber":"Enter your Phone Number",
+    "phone" : "Phone"
 }
